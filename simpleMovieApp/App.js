@@ -6,8 +6,8 @@ export default function App() {
   const [defaultRating, setdefaultRating] = useState(0)
   const [maxRating, setmaxRating] = useState([1,2,3,4,5])
 
-  const starImgFilled = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_filled.png'
-  const starImgCorner = 'https://raw.githubusercontent.com/tranhonghan/images/main/star_corner.png'
+  const starImgFilled = './assets/starFilled.png'
+  const starImgCorner = './assets/starCorner.png'
 
   const CustomRatingBar = () => {
     return (
@@ -21,7 +21,7 @@ export default function App() {
                 */
                 <TouchableOpacity activeOpacity={0.7} key={item} onPress={() => setdefaultRating(item)}>
                   <Image style={styles.starImgStyle} source={ 
-                    item <= defaultRating ? {uri: starImgFilled} : {uri: starImgCorner}
+                    item <= defaultRating ? require(starImgFilled) : require(starImgCorner)
                   }
                   />
                 </TouchableOpacity>
