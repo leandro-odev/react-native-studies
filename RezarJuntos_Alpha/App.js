@@ -1,20 +1,29 @@
+import React from 'react';
 import { StyleSheet, Text, SafeAreaView, View, StatusBar } from 'react-native';
+
+import X, {Comp1, Comp2} from './src/components/Multi'
+import Primeiro from './src/components/Primeiro';
+
+
 
 export default function App() {
   return (
-    <SafeAreaView style={styles.barra}>
+    <SafeAreaView style={styles.App}>
       <StatusBar backgroundColor='#98C9A3' style='light-content' />
-      <View>
-        <Text style={styles.test}>Vasco</Text>
-      </View>
+      <X/>
+      <Comp1/>
+      <Comp2/>
+      <Primeiro/>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  barra: {
+  App: {
     flex: 1,
     backgroundColor: '#98C9A3',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   content: {
     marginTop: StatusBar.currentHeight,
