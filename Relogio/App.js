@@ -7,36 +7,36 @@ export default function App() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      let variacaoH = 0;
-      let variacaoM = 0;
+      let diferencaTempo = 0;
       let cidade = '';
       
       if(op == 0) {
-        variacaoH = 0;
-        variacaoM = 0;
+        diferencaTempo = -3;
         cidade = 'Maceió';
       }
       else if(op == 1) {
-        variacaoH = -1;
-        variacaoM = 0;
+        diferencaTempo = -4;
         cidade = 'Nova York';
       }
       else {
-        variacaoH = 4;
-        variacaoM = 1;
+        diferencaTempo = 0;
         cidade = 'Londres';
       }
 
-      let hora = new Date().getHours() + variacaoH;
-      let minute = new Date().getMinutes() + variacaoM;
-      let segundo = new Date().getSeconds();
+      const utcAtual = new Date();
+      const gmtHora = new Date(utcAtual.getTime() + (diferencaTempo * 60 * 60 * 1000));
+      let hora = gmtHora.getUTCHours();
+      let minute = gmtHora.getUTCMinutes();
+      let segundo = gmtHora.getUTCSeconds();
+
       if (minute >= 60) hora += 1;
       if (hora >= 24) hora -= 24;
       if (hora < 10) hora = '0' + hora;
       if (minute < 10) minute = '0' + minute;
       if (segundo < 10) segundo = '0' + segundo;
       
-      sethoraAtual(cidade + ' / ' + hora + ':' + minute + ':' + segundo);
+      const horaString = hora + ':' + minute + ':' + segundo;
+      sethoraAtual(cidade + ' / ' + horaString);
     }, 1000);
     return () => clearInterval(interval);
   }, [op])
